@@ -1,4 +1,14 @@
 module ScoutStatsd
+  @@prefix ||= nil
+
+  def self.configure(options = {})
+    @@prefix ||= options[:prefix]
+  end
+
+  def self.prefix
+    @@prefix ? "#{@@prefix}." : ''
+  end
+
   def self.rails?
     defined? Rails::Railtie
   end
