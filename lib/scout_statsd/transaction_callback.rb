@@ -1,8 +1,8 @@
-module ScoutDogstatsd
+module ScoutStatsd
   class TransactionCallback
     def call(payload)
       @payload = payload
-      ScoutDogstatsd.client.batch do |s|
+      ScoutStatsd.client.batch do |s|
         s.histogram("#{payload.transaction_type_slug}.duration_ms", payload.duration_ms, :tags => tags)
 
         if payload.queue_time_ms

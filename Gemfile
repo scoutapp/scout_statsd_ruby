@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in scout_dogstatsd.gemspec
+# Specify your gem's dependencies in scout_statsd.gemspec
 gemspec
 
 # Load the gem locally if modifying core extension functionality

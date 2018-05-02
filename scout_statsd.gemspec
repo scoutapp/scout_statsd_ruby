@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'scout_dogstatsd/version'
+require 'scout_statsd/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "scout_dogstatsd"
-  spec.version       = ScoutDogstatsd::VERSION
-  spec.authors       = ["Derek Haynes"]
+  spec.name          = "scout_statsd"
+  spec.version       = ScoutStatsd::VERSION
+  spec.authors       = ["Derek Haynes", "Mike Stewart"]
   spec.email         = ["derek.haynes@gmail.com"]
 
-  spec.summary       = %q{Reports app performance KPIs (response time, error rate, throughput, etc) via the DogStatsD client}
-  spec.homepage      = "https://github.com/scoutapp/scout_dogstatsd_ruby"
+  spec.summary       = %q{Reports app performance KPIs (response time, error rate, throughput, etc) via the StatsD client}
+  spec.homepage      = "https://github.com/mike-stewart/scout_statsd_ruby"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
@@ -24,5 +24,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "mocha"
 
   spec.add_runtime_dependency "scout_apm", "~> 2.4.11.pre"
-  spec.add_runtime_dependency "dogstatsd-ruby"
+  # spec.add_runtime_dependency "dogstatsd-ruby"
 end

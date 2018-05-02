@@ -4,13 +4,13 @@ class TransactionCallbackTest < Minitest::Test
   def setup
     statsd = Datadog::Statsd.new('localhost')
     statsd.socket = FakeUDPSocket.new
-    ScoutDogstatsd.configure(statsd)
+    ScoutStatsd.configure(statsd)
     @agent_context = ScoutApm::AgentContext.new
     @context = ScoutApm::Context.new(@agent_context)
   end
 
   def test_call
-    callback = ScoutDogstatsd::TransactionCallback.new
+    callback = ScoutStatsd::TransactionCallback.new
     callback.call(payload) # would be great to validate the actual statsd metrics that are reported
   end
 

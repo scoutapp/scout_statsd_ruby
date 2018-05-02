@@ -1,10 +1,8 @@
-# ScoutDogstatsd
+# ScoutStatsd
 
-[![Build Status](https://travis-ci.org/scoutapp/scout_dogstatsd_ruby.svg?branch=master)](https://travis-ci.org/scoutapp/scout_dogstatsd_ruby)
+[![Build Status](https://travis-ci.org/scoutapp/scout_statsd_ruby.svg?branch=master)](https://travis-ci.org/scoutapp/scout_statsd_ruby)
 
-Want your Rails performance KPIs in your DogStatsD-compatible metric system with _almost_ zero effort? Of course you do! Meet `scout_dogstatsd`! This gem is an extension of the [Scout](https://scoutapp.com) Ruby monitoring agent ([`scout_apm`](https://github.com/scoutapp/scout_apm_ruby)), and makes it easy to create an app performance dashboard:
-
-![screen](https://s3-us-west-1.amazonaws.com/scout-blog/scout_dogstatsd/datadog_screen.png)
+Want your Rails performance KPIs in your StatsD-compatible metric system with _almost_ zero effort? Of course you do! Meet `scout_statsd`! This gem is an extension of the [Scout](https://scoutapp.com) Ruby monitoring agent ([`scout_apm`](https://github.com/scoutapp/scout_apm_ruby)), and makes it easy to create an app performance dashboard.
 
 A [Scout](https://scoutapp.com) account isn't required, but it certainly makes getting to the source of app performance easier 😉.
 
@@ -32,18 +30,12 @@ hostname | The hostname of the app. See the [hostname](http://help.apm.scoutapp.
 
 Now, you can correlate app performance metrics with all of your other system metrics.
 
-## Monitoring Platforms that Support the DogStatsD Protocol
-
-* DataDog
-* SignalFx via the [collectd dogstatsd plugin](https://github.com/signalfx/signalfx-collectd-plugin/blob/master/src/dogstatsd.py)
-* Prometheus via the [statsd exporter](https://github.com/prometheus/statsd_exporter)
-
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'scout_dogstatsd'
+gem 'scout_statsd'
 ```
 
 And then execute:
@@ -52,16 +44,16 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install scout_dogstatsd
+    $ gem install scout_statsd
 
 ## Configuration
 
-__1. Add a `config/initializers/scout_dogstatsd.rb` file to your Rails app:__
+__1. Add a `config/initializers/scout_statsd.rb` file to your Rails app:__
 
 ```ruby
 require 'datadog/statsd'
 statsd = Datadog::Statsd.new('localhost', 8125)
-ScoutDogstatsd.configure(statsd)
+ScoutStatsd.configure(statsd)
 ```
 
 __2. Add a `config/scout_apm.yml` file to your Rails app:__
@@ -86,11 +78,11 @@ _Metrics are only sent if `monitor: true` for the associated Rails environment._
 
 ## How it works
 
-After each transaction (a web request or background job), the metrics specific to that transaction are transmitted via the DogStatsD protocol via the client passed through to `ScoutDogstatsd#configure`. No code changes are required: the `scout_apm` gem automatically instruments Rails controller-actions and background jobs. Easy peasy!
+After each transaction (a web request or background job), the metrics specific to that transaction are transmitted via the StatsD protocol via the client passed through to `ScoutStatsd#configure`. No code changes are required: the `scout_apm` gem automatically instruments Rails controller-actions and background jobs. Easy peasy!
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/scoutapp/scout_dogstatsd_ruby.
+Bug reports and pull requests are welcome on GitHub at https://github.com/mike-stewart/scout_statsd_ruby.
 
 
 ## License
