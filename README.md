@@ -12,8 +12,8 @@ The following metrics are reported w/o any custom instrumentation steps:
 
 | Metric Name | Type | Description |
 | - | - | - |
-web.duration_ms | histogram | The total duration of web requests in milliseconds
-job.duration_ms | histogram | The total duration of background jobs (Sidekiq, DelayedJob, etc.) in milliseconds
+web.duration_ms | timer | The total duration of web requests in milliseconds
+job.duration_ms | timer | The total duration of background jobs (Sidekiq, DelayedJob, etc.) in milliseconds
 web.error_count | counter | A count of web requests that throw an exception
 job.error_count | counter | A count of background jobs that throw an exception
 web.queue_time_ms | gauge | The [time spent in request queuing](http://help.apm.scoutapp.com/#request-queuing) in milliseconds

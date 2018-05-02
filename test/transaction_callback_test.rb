@@ -2,9 +2,6 @@ require_relative 'test_helper'
 
 class TransactionCallbackTest < Minitest::Test
   def setup
-    statsd = Datadog::Statsd.new('localhost')
-    statsd.socket = FakeUDPSocket.new
-    ScoutStatsd.configure(statsd)
     @agent_context = ScoutApm::AgentContext.new
     @context = ScoutApm::Context.new(@agent_context)
   end

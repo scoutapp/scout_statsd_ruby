@@ -2,27 +2,15 @@ module ScoutStatsd
   class TransactionCallback
     def call(payload)
       @payload = payload
-      ScoutStatsd.client.batch do |s|
-        s.histogram("#{payload.transaction_type_slug}.duration_ms", payload.duration_ms, :tags => tags)
+      StatsD.measure("#{payload.transaction_type_slug}.duration_ms", payload.duration_ms)
 
-        if payload.queue_time_ms
-          s.gauge("#{payload.transaction_type_slug}.queue_time_ms", payload.queue_time_ms, :tags => tags)
-        end
+      if payload.queue_time_ms
+        StatsD.gauge("#{payload.transaction_type_slug}.queue_time_ms", payload.queue_time_ms)
+      end
 
-        if payload.error?
-          s.increment("#{payload.transaction_type_slug}.error_count", :tags => tags)
-        end
+      if payload.error?
+        StatsD.increment("#{payload.transaction_type_slug}.error_count")
       end
     end
-
-    private
-
-    def tags
-      [
-        "hostname:#{@payload.hostname}",
-        "app:#{@payload.app_name}",
-      ]
-    end
-
   end
 end

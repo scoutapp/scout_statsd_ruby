@@ -4,13 +4,8 @@ require 'minitest/pride'
 require 'mocha/mini_test'
 
 require 'scout_apm'
-require 'datadog/statsd'
-require 'scout_dogstatsd'
-
-class Datadog::Statsd
-  # we need to stub this
-  attr_accessor :socket
-end
+require 'statsd-instrument'
+require 'scout_statsd'
 
 class FakeUDPSocket
   def initialize
